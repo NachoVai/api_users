@@ -310,4 +310,21 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
+  config.jwt do |jwt|
+    jwt.secret = Rails.application.credentials.fetch(:secret_key_base)
+    jwt.dispatch_requests = [
+      ['POST', %r{^/users/sign_in$}],
+    ]
+    # Configures the revocation requests for JWT authentication.
+    # The revocation_requests variable is an array of arrays, where each inner array
+    # represents a revocation request. Each inner array contains two elements:
+    #   - The HTTP method of the request (e.g., 'DELETE')
+    #   - The regular expression pattern for the request URL (e.g., %r{^/users/sign_out$})
+    # This configuration allows JWT revocation for the specified request URLs and methods.
+    jwt.revocation_requests = [
+      ['DELETE', %r{^/users/sign_out$}]
+    ]
+    jwt.expiration_time = 1.day.to_i
+  end
 end
