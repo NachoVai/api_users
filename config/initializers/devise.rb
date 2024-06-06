@@ -315,6 +315,7 @@ Devise.setup do |config|
     jwt.secret = Rails.application.credentials.fetch(:secret_key_base)
     jwt.dispatch_requests = [
       ['POST', %r{^/users/sign_in$}],
+      ['POST', %r{^/users$}]
     ]
     # Configures the revocation requests for JWT authentication.
     # The revocation_requests variable is an array of arrays, where each inner array
