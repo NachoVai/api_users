@@ -33,7 +33,7 @@ module UserAuthService
     # Esta línea configura el almacenamiento de sesiones utilizando cookies.
     # `:cookie_store` especifica que las sesiones se almacenarán en el lado del cliente dentro de una cookie.
     # `key: '_interslice_session'` define el nombre de la clave de la cookie que almacenará los datos de la sesión.
-    config.session_store :cookie_store, key: '_interslice_session'
+    # config.session_store :cookie_store, key: '_interslice_session'
 
     # Estas líneas añaden middleware necesario para manejar cookies y sesiones.
     # `ActionDispatch::Cookies` es un middleware que gestiona la funcionalidad de las cookies en la aplicación.
@@ -41,6 +41,6 @@ module UserAuthService
 
     # `config.session_store` y `config.session_options` son utilizados aquí para configurar el middleware
     # de almacenamiento de sesiones con las opciones definidas previamente.
-    config.middleware.use config.session_store, config.session_options
+    # config.middleware.use config.session_store, config.session_options
   end
 end
